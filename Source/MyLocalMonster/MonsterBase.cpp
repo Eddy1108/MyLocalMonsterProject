@@ -13,7 +13,6 @@ AMonsterBase::AMonsterBase()
 	
 	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
 	StaticMesh->SetupAttachment(RootComponent);
-	//StaticMesh->SetRelativeRotationExact(FRotator(90.f, 0.f, 0.f));
 
 }
 

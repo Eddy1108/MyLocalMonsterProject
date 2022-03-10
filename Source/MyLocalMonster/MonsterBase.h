@@ -18,8 +18,8 @@ public:
 	UPROPERTY(EditAnywhere)
 	UStaticMeshComponent* StaticMesh{nullptr};
 
-	UPROPERTY(EditAnywhere)
-	int level{0};
+	UPROPERTY(VisibleAnywhere)
+	int xpLevel{0};
 
 protected:
 	// Called when the game starts or when spawned
