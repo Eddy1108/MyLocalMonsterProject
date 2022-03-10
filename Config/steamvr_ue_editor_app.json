@@ -1,0 +1,18 @@
+{
+	"source": "UE",
+	"applications": [
+		{
+			"app_key": "application.generated.ue.mylocalmonster-18319896.ue4editor.exe",
+			"launch_type": "url",
+			"url": "steam://launch/",
+			"action_manifest_path": "T:/_UNREAL PROJECTS/MyLocalMonster/MyLocalMonsterProject/Config/SteamVRBindings/steamvr_manifest.json",
+			"strings":
+			{
+				"en_us":
+				{
+					"name": "MyLocalMonster-18319896 [UE Editor]"
+				}
+			}
+		}
+	]
+}
