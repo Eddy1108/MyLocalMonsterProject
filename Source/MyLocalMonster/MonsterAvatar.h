@@ -15,11 +15,11 @@ public:
 	// Sets default values for this actor's properties
 	AMonsterAvatar();
 	
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(VisibleAnywhere)
 	UStaticMeshComponent* HeadMesh{nullptr};
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(VisibleAnywhere)
 	UStaticMeshComponent* BodyMesh{nullptr};
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(VisibleAnywhere)
 	UStaticMeshComponent* FaceMesh{nullptr};
 
 	UPROPERTY(EditAnywhere)
@@ -40,6 +40,8 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	
+
 	void ChangePart();
 	void ChangeFace(float index);
 	void ChangeHead(float index);
@@ -48,5 +50,4 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
 };

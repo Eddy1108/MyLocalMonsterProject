@@ -49,6 +49,11 @@ void AMonsterAvatar::ChangePart()
 void AMonsterAvatar::ChangeFace(float index)
 {
 	UsedFace = index;
+	// UsedFace++;
+	// if (UsedFace > FaceMaterials.Num())
+	// {
+	// 	UsedFace = 0;
+	// }
 
 	if (UsedFace < FaceMaterials.Num())
 		FaceMesh->SetMaterial(0, FaceMaterials[UsedFace]);
@@ -74,8 +79,7 @@ void AMonsterAvatar::ChangeBody(float index)
 void AMonsterAvatar::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
-	UE_LOG(LogTemp, Warning, TEXT("Used Face: %d, FaceMaterials: %d"), UsedFace, FaceMaterials.Num());
+	
 	
 	ChangePart();
 

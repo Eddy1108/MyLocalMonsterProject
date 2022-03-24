@@ -15,7 +15,7 @@ public:
 	// Sets default values for this actor's properties
 	AMonsterBase();
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(VisibleAnywhere)
 	UStaticMeshComponent* StaticMesh{nullptr};
 
 	UPROPERTY(VisibleAnywhere)
