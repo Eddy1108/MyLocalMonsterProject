@@ -64,6 +64,10 @@
 				"Win64",
 				"Linux"
 			]
+		},
+		{
+			"Name": "Paper2D",
+			"Enabled": true
 		}
 	]
 }

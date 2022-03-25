@@ -2,9 +2,11 @@
 
 #pragma once
 
+#include "Paper2DClasses.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "MonsterAvatar.generated.h"
+
 
 UCLASS()
 class MYLOCALMONSTER_API AMonsterAvatar : public AActor
@@ -15,19 +17,13 @@ public:
 	// Sets default values for this actor's properties
 	AMonsterAvatar();
 	
-	UPROPERTY(VisibleAnywhere)
-	UStaticMeshComponent* HeadMesh{nullptr};
-	UPROPERTY(VisibleAnywhere)
-	UStaticMeshComponent* BodyMesh{nullptr};
-	UPROPERTY(VisibleAnywhere)
-	UStaticMeshComponent* FaceMesh{nullptr};
-
-	UPROPERTY(EditAnywhere)
-	TArray<UMaterial*> BodyMaterials;
-	UPROPERTY(EditAnywhere)
-	TArray<UMaterial*> HeadMaterials;
-	UPROPERTY(EditAnywhere)
-	TArray<UMaterial*> FaceMaterials;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	class UPaperFlipbookComponent* BodyFlipBook{nullptr};
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	class UPaperFlipbookComponent* HeadFlipBook{nullptr};
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	class UPaperFlipbookComponent* FaceFlipBook{nullptr};
+	
 
 	UPROPERTY(EditAnywhere)
 	int UsedFace{0};

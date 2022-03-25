@@ -11,14 +11,13 @@ AMonsterAvatar::AMonsterAvatar()
 
 	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
 	
-	HeadMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("HeadMesh"));
-	HeadMesh->SetupAttachment(RootComponent);
 
-	BodyMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("BodyMesh"));
-	BodyMesh->SetupAttachment(RootComponent);
-
-	FaceMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("FaceMesh"));
-	FaceMesh->SetupAttachment(RootComponent);
+	BodyFlipBook = CreateDefaultSubobject<UPaperFlipbookComponent>(TEXT("BodyFlipBook"));
+	BodyFlipBook->SetupAttachment(RootComponent);
+	HeadFlipBook = CreateDefaultSubobject<UPaperFlipbookComponent>(TEXT("HeadFlipBook"));
+	HeadFlipBook->SetupAttachment(RootComponent);
+	FaceFlipBook = CreateDefaultSubobject<UPaperFlipbookComponent>(TEXT("FaceFlipBook"));
+	FaceFlipBook->SetupAttachment(RootComponent);
 	
 }
 
@@ -33,46 +32,28 @@ void AMonsterAvatar::BeginPlay()
 
 void AMonsterAvatar::ChangePart()
 {
-	if (UsedFace < FaceMaterials.Num())
-		FaceMesh->SetMaterial(0, FaceMaterials[UsedFace]);
 
-	if (UsedHead < HeadMaterials.Num())
-		HeadMesh->SetMaterial(0, HeadMaterials[UsedHead]);
-
-	if (UsedBody < BodyMaterials.Num())
-		BodyMesh->SetMaterial(0, BodyMaterials[UsedBody]);
-	
-	
-	
+	ChangeBody(UsedBody);
+	ChangeHead(UsedHead);
 }
 
 void AMonsterAvatar::ChangeFace(float index)
 {
-	UsedFace = index;
-	// UsedFace++;
-	// if (UsedFace > FaceMaterials.Num())
-	// {
-	// 	UsedFace = 0;
-	// }
 
-	if (UsedFace < FaceMaterials.Num())
-		FaceMesh->SetMaterial(0, FaceMaterials[UsedFace]);
 }
 
 void AMonsterAvatar::ChangeHead(float index)
 {
 	UsedHead = index;
-	
-	if (UsedHead < HeadMaterials.Num())
-		HeadMesh->SetMaterial(0, HeadMaterials[UsedHead]);
+
+	HeadFlipBook->SetPlaybackPositionInFrames(UsedHead, true);
 }
 
 void AMonsterAvatar::ChangeBody(float index)
 {
 	UsedBody = index;
-	
-	if (UsedBody < BodyMaterials.Num())
-		BodyMesh->SetMaterial(0, BodyMaterials[UsedBody]);
+
+	BodyFlipBook->SetPlaybackPositionInFrames(UsedBody, true);
 }
 
 // Called every frame
