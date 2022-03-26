@@ -35,10 +35,14 @@ void AMonsterAvatar::ChangePart()
 
 	ChangeBody(UsedBody);
 	ChangeHead(UsedHead);
+	ChangeFace(UsedFace);
 }
 
 void AMonsterAvatar::ChangeFace(float index)
 {
+    UsedFace = index;
+    
+    FaceFlipBook->SetPlaybackPositionInFrames(UsedFace, true);
 
 }
 
@@ -62,7 +66,7 @@ void AMonsterAvatar::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 	
 	
-	ChangePart();
+	//ChangePart();
 
 }
 

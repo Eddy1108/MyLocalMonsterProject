@@ -32,17 +32,20 @@ public:
 	UPROPERTY(EditAnywhere)
 	int UsedBody{0};
 
+	
+	UFUNCTION(BlueprintCallable)
+	void ChangeFace(float index);
+	UFUNCTION(BlueprintCallable)
+	void ChangeHead(float index);
+	UFUNCTION(BlueprintCallable)
+	void ChangeBody(float index);
+	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	
-
 	void ChangePart();
-	void ChangeFace(float index);
-	void ChangeHead(float index);
-	void ChangeBody(float index);
-
+	
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
