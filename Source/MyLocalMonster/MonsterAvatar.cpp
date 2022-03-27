@@ -66,7 +66,7 @@ void AMonsterAvatar::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 	
 	
-	//ChangePart();
+	ChangePart();
 
 }
 
