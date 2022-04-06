@@ -10,7 +10,6 @@ AMonsterAvatar::AMonsterAvatar()
 	PrimaryActorTick.bCanEverTick = true;
 
 	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
-	
 
 	BodyFlipBook = CreateDefaultSubobject<UPaperFlipbookComponent>(TEXT("BodyFlipBook"));
 	BodyFlipBook->SetupAttachment(RootComponent);
@@ -44,6 +43,8 @@ void AMonsterAvatar::ChangeFace(float index)
     
     FaceFlipBook->SetPlaybackPositionInFrames(UsedFace, true);
 
+	UE_LOG(LogTemp, Warning, TEXT("Changed Face to: %d"), index);
+
 }
 
 void AMonsterAvatar::ChangeHead(float index)
@@ -51,6 +52,8 @@ void AMonsterAvatar::ChangeHead(float index)
 	UsedHead = index;
 
 	HeadFlipBook->SetPlaybackPositionInFrames(UsedHead, true);
+
+	UE_LOG(LogTemp, Warning, TEXT("Changed Head to: %d"), index);
 }
 
 void AMonsterAvatar::ChangeBody(float index)
@@ -58,6 +61,8 @@ void AMonsterAvatar::ChangeBody(float index)
 	UsedBody = index;
 
 	BodyFlipBook->SetPlaybackPositionInFrames(UsedBody, true);
+
+	UE_LOG(LogTemp, Warning, TEXT("Changed Body to: %d"), index);
 }
 
 // Called every frame

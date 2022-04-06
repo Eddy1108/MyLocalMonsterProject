@@ -2,10 +2,12 @@
 
 #pragma once
 
+#include "Blueprint/UserWidget.h"
 #include "Paper2DClasses.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "MonsterAvatar.generated.h"
+
 
 
 UCLASS()
@@ -23,6 +25,11 @@ public:
 	class UPaperFlipbookComponent* HeadFlipBook{nullptr};
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	class UPaperFlipbookComponent* FaceFlipBook{nullptr};
+
+	// UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	// TArray<UUserWidget*> UIWidgets{nullptr};
+	
+	UUserWidget* UIWidgets{nullptr};
 	
 
 	UPROPERTY(EditAnywhere)
