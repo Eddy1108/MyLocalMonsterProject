@@ -17,6 +17,9 @@ AMonsterAvatar::AMonsterAvatar()
 	HeadFlipBook->SetupAttachment(RootComponent);
 	FaceFlipBook = CreateDefaultSubobject<UPaperFlipbookComponent>(TEXT("FaceFlipBook"));
 	FaceFlipBook->SetupAttachment(RootComponent);
+
+	TestFlipBook = CreateDefaultSubobject<UPaperFlipbookComponent>(TEXT("TestFlipBook"));
+	TestFlipBook->SetupAttachment(RootComponent);
 	
 }
 
@@ -26,6 +29,10 @@ void AMonsterAvatar::BeginPlay()
 	Super::BeginPlay();
 
 	ChangePart();
+
+	HeadFlipBook->SetPlayRate(0);
+	FaceFlipBook->SetPlayRate(0);
+	BodyFlipBook->SetPlayRate(0);
 	
 }
 
@@ -40,8 +47,10 @@ void AMonsterAvatar::ChangePart()
 void AMonsterAvatar::ChangeFace(float index)
 {
     UsedFace = index;
-    
+	
+	FaceFlipBook->SetPlayRate(1);
     FaceFlipBook->SetPlaybackPositionInFrames(UsedFace, true);
+	FaceFlipBook->SetPlayRate(0);
 
 	UE_LOG(LogTemp, Warning, TEXT("Changed Face to: %d"), index);
 
@@ -51,7 +60,9 @@ void AMonsterAvatar::ChangeHead(float index)
 {
 	UsedHead = index;
 
+	HeadFlipBook->SetPlayRate(1);
 	HeadFlipBook->SetPlaybackPositionInFrames(UsedHead, true);
+	HeadFlipBook->SetPlayRate(0);
 
 	UE_LOG(LogTemp, Warning, TEXT("Changed Head to: %d"), index);
 }
@@ -60,7 +71,9 @@ void AMonsterAvatar::ChangeBody(float index)
 {
 	UsedBody = index;
 
+	BodyFlipBook->SetPlayRate(1);
 	BodyFlipBook->SetPlaybackPositionInFrames(UsedBody, true);
+	BodyFlipBook->SetPlayRate(0);
 
 	UE_LOG(LogTemp, Warning, TEXT("Changed Body to: %d"), index);
 }
@@ -71,7 +84,7 @@ void AMonsterAvatar::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 	
 	
-	ChangePart();
+	//ChangePart();
 
 }
 

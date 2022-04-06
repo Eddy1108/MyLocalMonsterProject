@@ -26,11 +26,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	class UPaperFlipbookComponent* FaceFlipBook{nullptr};
 
-	// UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	// TArray<UUserWidget*> UIWidgets{nullptr};
-	
-	UUserWidget* UIWidgets{nullptr};
-	
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	class UPaperFlipbookComponent* TestFlipBook{nullptr};
 
 	UPROPERTY(EditAnywhere)
 	int UsedFace{0};
