@@ -30,11 +30,11 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	class UPaperFlipbookComponent* TestFlipBook{nullptr};
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int UsedFace{0};
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int UsedHead{0};
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int UsedBody{0};
 
 	

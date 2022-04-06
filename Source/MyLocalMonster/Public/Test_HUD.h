@@ -7,9 +7,6 @@
 #include "MyLocalMonster/MonsterAvatar.h"
 #include "Test_HUD.generated.h"
 
-/**
- * 
- */
 UCLASS()
 class MYLOCALMONSTER_API ATest_HUD : public AHUD
 {
