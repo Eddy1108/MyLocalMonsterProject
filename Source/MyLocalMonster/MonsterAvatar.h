@@ -2,7 +2,6 @@
 
 #pragma once
 
-#include "Blueprint/UserWidget.h"
 #include "Paper2DClasses.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
