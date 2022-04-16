@@ -133,6 +133,54 @@ int AMonsterAvatar::GetUnlockedBodySize()
 	return unlockedBody.size() - 1;
 }
 
+int AMonsterAvatar::GetUnlockedFace()
+{
+	return unlockedFace[UsedFace];
+}
+
+int AMonsterAvatar::GetUnlockedHead()
+{
+	return unlockedHead[UsedHead];
+}
+
+int AMonsterAvatar::GetUnlockedBody()
+{
+	return unlockedBody[UsedBody];
+}
+
+bool AMonsterAvatar::AddUnlockFace(int item)
+{
+	if (!IsUnlockedFace(item))
+	{
+		unlockedFace.push_back(item);
+		return true;
+	}
+
+	return false;
+}
+
+bool AMonsterAvatar::AddUnlockHead(int item)
+{
+	if (!IsUnlockedHead(item))
+	{
+		unlockedHead.push_back(item);
+		return true;
+	}
+
+	return false;
+}
+
+bool AMonsterAvatar::AddUnlockBody(int item)
+{
+	if (!IsUnlockedBody(item))
+	{
+		unlockedBody.push_back(item);
+		return true;
+	}
+
+	return false;
+}
+
 // Called every frame
 void AMonsterAvatar::Tick(float DeltaTime)
 {

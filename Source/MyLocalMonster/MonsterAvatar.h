@@ -59,6 +59,20 @@ public:
 	int GetUnlockedFaceSize();
 	UFUNCTION(BlueprintCallable)
 	int GetUnlockedBodySize();
+
+	UFUNCTION(BlueprintCallable)
+	int GetUnlockedFace();
+	UFUNCTION(BlueprintCallable)
+	int GetUnlockedHead();
+	UFUNCTION(BlueprintCallable)
+	int GetUnlockedBody();
+
+	UFUNCTION(BlueprintCallable)
+	bool AddUnlockFace(int item);
+	UFUNCTION(BlueprintCallable)
+	bool AddUnlockHead(int item);
+	UFUNCTION(BlueprintCallable)
+	bool AddUnlockBody(int item);
 	
 protected:
 	// Called when the game starts or when spawned
