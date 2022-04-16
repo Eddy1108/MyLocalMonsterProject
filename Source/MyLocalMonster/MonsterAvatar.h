@@ -34,16 +34,16 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	class UPaperFlipbookComponent* FaceFlipBook{nullptr};
 
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-	class UPaperFlipbookComponent* TestFlipBook{nullptr};
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int UsedFace{0};
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int UsedHead{0};
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int UsedBody{0};
+
+	std::vector<int> unlockedHead;
+	std::vector<int> unlockedFace;
+	std::vector<int> unlockedBody;
 
 	
 	UFUNCTION(BlueprintCallable)
@@ -69,10 +69,7 @@ protected:
 	bool IsUnlockedHead(int index);
 	bool IsUnlockedFace(int index);
 	bool IsUnlockedBody(int index);
-
-	std::vector<int> unlockedHead;
-	std::vector<int> unlockedFace;
-	std::vector<int> unlockedBody;
+	
 	
 public:	
 	// Called every frame

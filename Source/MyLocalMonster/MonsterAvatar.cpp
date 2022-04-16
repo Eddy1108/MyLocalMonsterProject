@@ -17,10 +17,6 @@ AMonsterAvatar::AMonsterAvatar()
 	HeadFlipBook->SetupAttachment(RootComponent);
 	FaceFlipBook = CreateDefaultSubobject<UPaperFlipbookComponent>(TEXT("FaceFlipBook"));
 	FaceFlipBook->SetupAttachment(RootComponent);
-
-	TestFlipBook = CreateDefaultSubobject<UPaperFlipbookComponent>(TEXT("TestFlipBook"));
-	TestFlipBook->SetupAttachment(RootComponent);
-	
 }
 
 // Called when the game starts or when spawned
