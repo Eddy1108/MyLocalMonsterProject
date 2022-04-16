@@ -28,6 +28,14 @@ void AMonsterAvatar::BeginPlay()
 {
 	Super::BeginPlay();
 
+	for (int i = 0; i < 2; ++i)
+	{
+		unlockedHead.push_back(i);
+		unlockedFace.push_back(i);
+		unlockedBody.push_back(i);
+	}
+
+	
 	ChangePart();
 
 	HeadFlipBook->SetPlayRate(0);
@@ -42,6 +50,42 @@ void AMonsterAvatar::ChangePart()
 	ChangeBody(UsedBody);
 	ChangeHead(UsedHead);
 	ChangeFace(UsedFace);
+}
+
+bool AMonsterAvatar::IsUnlockedHead(int index)
+{
+	for (int i = 0; i < unlockedHead.size(); ++i)
+	{
+		if (index == unlockedHead[i])
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+bool AMonsterAvatar::IsUnlockedFace(int index)
+{
+	for (int i = 0; i < unlockedFace.size(); ++i)
+	{
+		if (index == unlockedFace[i])
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+bool AMonsterAvatar::IsUnlockedBody(int index)
+{
+	for (int i = 0; i < unlockedBody.size(); ++i)
+	{
+		if (index == unlockedBody[i])
+		{
+			return true;
+		}
+	}
+	return false;
 }
 
 void AMonsterAvatar::ChangeFace(float index)
@@ -76,6 +120,21 @@ void AMonsterAvatar::ChangeBody(float index)
 	BodyFlipBook->SetPlayRate(0);
 
 	UE_LOG(LogTemp, Warning, TEXT("Changed Body to: %d"), index);
+}
+
+int AMonsterAvatar::GetUnlockedHeadSize()
+{
+	return unlockedHead.size() - 1;
+}
+
+int AMonsterAvatar::GetUnlockedFaceSize()
+{
+	return unlockedFace.size() - 1;
+}
+
+int AMonsterAvatar::GetUnlockedBodySize()
+{
+	return unlockedBody.size() - 1;
 }
 
 // Called every frame

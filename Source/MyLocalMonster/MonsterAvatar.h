@@ -2,11 +2,20 @@
 
 #pragma once
 
+
+#include <vector>
+
 #include "Paper2DClasses.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "MonsterAvatar.generated.h"
 
+//Outfits:
+// 0 = Default
+// 1 = Devil
+// 2 = FireMachine
+// 3 = Bandage
+// 4 = Mushroom
 
 
 UCLASS()
@@ -43,12 +52,27 @@ public:
 	void ChangeHead(float index);
 	UFUNCTION(BlueprintCallable)
 	void ChangeBody(float index);
+
+	UFUNCTION(BlueprintCallable)
+	int GetUnlockedHeadSize();
+	UFUNCTION(BlueprintCallable)
+	int GetUnlockedFaceSize();
+	UFUNCTION(BlueprintCallable)
+	int GetUnlockedBodySize();
 	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 	void ChangePart();
+
+	bool IsUnlockedHead(int index);
+	bool IsUnlockedFace(int index);
+	bool IsUnlockedBody(int index);
+
+	std::vector<int> unlockedHead;
+	std::vector<int> unlockedFace;
+	std::vector<int> unlockedBody;
 	
 public:	
 	// Called every frame
