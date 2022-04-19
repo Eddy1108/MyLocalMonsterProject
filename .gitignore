@@ -91,3 +91,12 @@ VSCode Files
 /.vscode/*
 BuildingEscape.code-workspace
 
+
+ESPEN LEGGER TIL FLERE TING VI IKKE VIL HA
+*.vs/
+*Binaries/
+*Config/
+*DerivedDataCache/
+*Saved/
+*Intermediate/
+

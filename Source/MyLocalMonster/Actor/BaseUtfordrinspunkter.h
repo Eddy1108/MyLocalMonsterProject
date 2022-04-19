@@ -7,13 +7,14 @@
 #include "BaseUtfordrinspunkter.generated.h"
 
 class UStaticMeshComponent;
+class UPaperFlipbookComponent;
 UCLASS()
 class MYLOCALMONSTER_API ABaseUtfordrinspunkter : public AActor
 {
 	GENERATED_BODY()
 private:
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Mesh", meta = (AllowPrivateAccess = "true"))
-	UStaticMeshComponent* StaticMeshComponent { nullptr };
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "FlipBook", meta = (AllowPrivateAccess = "true"))
+	UPaperFlipbookComponent* FlipBookComponent { nullptr };
 public:	
 	// Sets default values for this actor's properties
 	ABaseUtfordrinspunkter();
