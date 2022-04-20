@@ -10,7 +10,8 @@ ABaseUtfordrinspunkter::ABaseUtfordrinspunkter()
 	PrimaryActorTick.bCanEverTick = false;
 	
 	FlipBookComponent = CreateDefaultSubobject<UPaperFlipbookComponent>("Static mesh");
-	RootComponent = FlipBookComponent; 
+	RootComponent = FlipBookComponent;
+	//FlipBookComponent->coll
 }
 
 // Called when the game starts or when spawned
