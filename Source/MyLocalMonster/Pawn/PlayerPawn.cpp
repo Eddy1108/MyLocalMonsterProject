@@ -6,6 +6,8 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
 #include "Components/StaticMeshComponent.h"
+#include "Components/BoxComponent.h"
+#include "FieldSystem/Source/FieldSystemEngine/Public/Field/FieldSystemObjects.h"
 
 // Sets default values
 APlayerPawn::APlayerPawn()
@@ -21,6 +23,9 @@ APlayerPawn::APlayerPawn()
 
 	CameraComp = CreateDefaultSubobject<UCameraComponent>("Camera Component");
 	CameraComp->SetupAttachment(SpringArm);
+
+	BoxCollisionComponent=CreateDefaultSubobject<UBoxComponent>("Box Collision");
+	BoxCollisionComponent->SetupAttachment(StaticMeshComponent);
 }
 
 // Called when the game starts or when spawned
