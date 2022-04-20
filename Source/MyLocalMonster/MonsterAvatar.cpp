@@ -19,6 +19,30 @@ AMonsterAvatar::AMonsterAvatar()
 	FaceFlipBook->SetupAttachment(RootComponent);
 }
 
+bool AMonsterAvatar::IsMMUnlocked(int index)
+{
+	for (int i = 0; i < MM.size(); ++i)
+	{
+		if (MM[i] == index)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+bool AMonsterAvatar::AddMM(int item)
+{
+	if (!IsMMUnlocked(item))
+	{
+		MM.push_back(item);
+		return true;
+	}
+
+	return false;
+}
+
 // Called when the game starts or when spawned
 void AMonsterAvatar::BeginPlay()
 {
@@ -30,6 +54,8 @@ void AMonsterAvatar::BeginPlay()
 		unlockedFace.push_back(i);
 		unlockedBody.push_back(i);
 	}
+
+	MM.push_back(0);
 
 	
 	ChangePart();
