@@ -7,4 +7,3 @@ Erik Holst\
 Sven Magnus Furberg\
 Espen Fodstad\
 Mathias Eek
-****

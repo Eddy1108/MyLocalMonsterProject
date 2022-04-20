@@ -2,16 +2,15 @@
 
 
 #include "BaseUtfordrinspunkter.h"
-#include "PaperFlipbookComponent.h"
+#include "Components/StaticMeshComponent.h"
 // Sets default values
 ABaseUtfordrinspunkter::ABaseUtfordrinspunkter()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
 	
-	FlipBookComponent = CreateDefaultSubobject<UPaperFlipbookComponent>("Static mesh");
-	RootComponent = FlipBookComponent;
-	//FlipBookComponent->coll
+	StaticMeshComponent=CreateDefaultSubobject<UStaticMeshComponent>("Static mesh");
+	RootComponent = StaticMeshComponent;
 }
 
 // Called when the game starts or when spawned

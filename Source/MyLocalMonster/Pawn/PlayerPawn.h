@@ -9,7 +9,6 @@
 class USpringArmComponent;
 class UCameraComponent;
 class UStaticMeshComponent;
-class UBoxComponent;
 UCLASS()
 class MYLOCALMONSTER_API APlayerPawn : public APawn
 {
@@ -18,17 +17,13 @@ private:
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Mesh", meta = (AllowPrivateAccess = "true"))
 	UStaticMeshComponent* StaticMeshComponent { nullptr };
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Mesh", meta = (AllowPrivateAccess = "true"))
-	UBoxComponent* BoxCollisionComponent { nullptr };
-
+	
+	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera", meta = (AllowPrivateAccess = "true"))
 	USpringArmComponent* SpringArm { nullptr };
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera", meta = (AllowPrivateAccess = "true"))
 	UCameraComponent* CameraComp { nullptr };
-
-	
 public:
 	// Sets default values for this pawn's properties
 	APlayerPawn();
