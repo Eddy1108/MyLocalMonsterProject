@@ -73,6 +73,22 @@ public:
 	bool AddUnlockHead(int item);
 	UFUNCTION(BlueprintCallable)
 	bool AddUnlockBody(int item);
+
+	//Reward Stuff Below:
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int Gold{40};
+	UPROPERTY(BlueprintReadWrite)
+	int XP{0};
+	UPROPERTY(BlueprintReadWrite)
+	int Level{1};
+	
+	std::vector<int> MM;	//6 Items!
+
+	UFUNCTION(BlueprintCallable)
+	bool AddMM(int item);
+	UFUNCTION(BlueprintCallable)
+	bool IsMMUnlocked(int index);
 	
 protected:
 	// Called when the game starts or when spawned
@@ -83,7 +99,6 @@ protected:
 	bool IsUnlockedHead(int index);
 	bool IsUnlockedFace(int index);
 	bool IsUnlockedBody(int index);
-	
 	
 public:	
 	// Called every frame
