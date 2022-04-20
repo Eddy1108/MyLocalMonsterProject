@@ -3,9 +3,11 @@
 
 #include "PlayerPawn.h"
 
+#include "Components/BoxComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
 #include "Components/StaticMeshComponent.h"
+#include "MyLocalMonster/Actor/BaseUtfordrinspunkter.h"
 
 // Sets default values
 APlayerPawn::APlayerPawn()
@@ -16,6 +18,9 @@ APlayerPawn::APlayerPawn()
 	StaticMeshComponent=CreateDefaultSubobject<UStaticMeshComponent>("Static mesh");
 	RootComponent = StaticMeshComponent;
 
+	BoxComponent=CreateDefaultSubobject<UBoxComponent>("Box Component");
+	BoxComponent->SetupAttachment(StaticMeshComponent);
+	
 	SpringArm = CreateDefaultSubobject<USpringArmComponent>("Spring Arm");
 	SpringArm->SetupAttachment(RootComponent);
 
@@ -43,7 +48,7 @@ void APlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 	PlayerInputComponent->BindAxis("MoveForward", this, &APlayerPawn::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &APlayerPawn::MoveRight);
-
+	PlayerInputComponent->BindAction("MouseClick",IE_Pressed,this,&APlayerPawn::MouseClick);
 }
 
 void APlayerPawn::MoveForward(float Value)
@@ -74,3 +79,25 @@ void APlayerPawn::MoveRight(float Value)
 	}
 }
 
+void APlayerPawn::MouseClick()
+{
+	TArray<AActor*> overlappedActors{nullptr};
+	BoxComponent->GetOverlappingActors(overlappedActors);
+	for (auto OverlappedActor : overlappedActors)
+	{
+		if(OverlappedActor->IsA(ABaseUtfordrinspunkter::StaticClass()))
+		{
+			ABaseUtfordrinspunkter* BaseUtfordrinspunkt = Cast<ABaseUtfordrinspunkter>(OverlappedActor);
+			if (BaseUtfordrinspunkt->b_clicked)
+			{
+				UE_LOG(LogTemp,Warning,TEXT("DENNE ER TRØKKA"))
+				ChallegeWiget(BaseUtfordrinspunkt);
+			}
+		}
+	}
+}
+
+void APlayerPawn::ChallegeWiget(ABaseUtfordrinspunkter* baseUtfordrinspunt)
+{
+	
+}
