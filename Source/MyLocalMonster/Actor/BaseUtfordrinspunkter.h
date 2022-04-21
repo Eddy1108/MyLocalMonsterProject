@@ -7,7 +7,6 @@
 #include "BaseUtfordrinspunkter.generated.h"
 
 class UPaperFlipbookComponent;
-class UWidgetComponent;
 UCLASS()
 class MYLOCALMONSTER_API ABaseUtfordrinspunkter : public AActor
 {
@@ -16,8 +15,6 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "FlipBook", meta = (AllowPrivateAccess = "true"))
 	UPaperFlipbookComponent* FlipbookComponent { nullptr };
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Widget", meta = (AllowPrivateAccess = "true"))
-	UWidgetComponent* WidgetComponent { nullptr };
 
 public:	
 	// Sets default values for this actor's properties
