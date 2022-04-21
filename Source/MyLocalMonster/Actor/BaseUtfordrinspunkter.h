@@ -6,17 +6,21 @@
 #include "GameFramework/Actor.h"
 #include "BaseUtfordrinspunkter.generated.h"
 
-class UStaticMeshComponent;
+class UPaperFlipbookComponent;
 UCLASS()
 class MYLOCALMONSTER_API ABaseUtfordrinspunkter : public AActor
 {
 	GENERATED_BODY()
 private:
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Mesh", meta = (AllowPrivateAccess = "true"))
-	UStaticMeshComponent* StaticMeshComponent { nullptr };
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "FlipBook", meta = (AllowPrivateAccess = "true"))
+	UPaperFlipbookComponent* FlipbookComponent { nullptr };
+
 public:	
 	// Sets default values for this actor's properties
 	ABaseUtfordrinspunkter();
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Variables")
+	bool b_clicked { false };
 
 protected:
 	// Called when the game starts or when spawned
