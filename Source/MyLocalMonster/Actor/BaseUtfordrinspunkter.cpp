@@ -3,6 +3,7 @@
 
 #include "BaseUtfordrinspunkter.h"
 #include "PaperFlipbookComponent.h"
+#include "Components/WidgetComponent.h"
 // Sets default values
 ABaseUtfordrinspunkter::ABaseUtfordrinspunkter()
 {
@@ -11,6 +12,7 @@ ABaseUtfordrinspunkter::ABaseUtfordrinspunkter()
 	
 	FlipbookComponent = CreateDefaultSubobject<UPaperFlipbookComponent>("Flip book");
 	RootComponent = FlipbookComponent;
+	WidgetComponent = CreateDefaultSubobject<UWidgetComponent>("Widget Component");
 }
 
 // Called when the game starts or when spawned
