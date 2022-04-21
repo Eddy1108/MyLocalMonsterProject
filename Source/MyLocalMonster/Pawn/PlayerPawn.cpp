@@ -3,7 +3,6 @@
 
 #include "PlayerPawn.h"
 
-#include "Components/BoxComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
 #include "Components/StaticMeshComponent.h"
@@ -19,9 +18,6 @@ APlayerPawn::APlayerPawn()
 
 	StaticMeshComponent=CreateDefaultSubobject<UStaticMeshComponent>("Static mesh");
 	RootComponent = StaticMeshComponent;
-
-	BoxComponent=CreateDefaultSubobject<UBoxComponent>("Box Component");
-	BoxComponent->SetupAttachment(StaticMeshComponent);
 	
 	SpringArm = CreateDefaultSubobject<USpringArmComponent>("Spring Arm");
 	SpringArm->SetupAttachment(RootComponent);
@@ -57,9 +53,8 @@ void APlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	PlayerInputComponent->BindAxis("MoveRight", this, &APlayerPawn::MoveRight);
 	PlayerInputComponent->BindAxis("Scroll",this,&APlayerPawn::Scroll);
 
-	PlayerInputComponent->BindAction("MouseClick",IE_Pressed,this,&APlayerPawn::MouseClick);
-	PlayerInputComponent->BindAction("Sprint",IE_Pressed,this,&APlayerPawn::MouseClick);
-	PlayerInputComponent->BindAction("Sprint",IE_Released,this,&APlayerPawn::MouseClick);
+	PlayerInputComponent->BindAction("Sprint",IE_Pressed,this,&APlayerPawn::Sprint);
+	PlayerInputComponent->BindAction("Sprint",IE_Released,this,&APlayerPawn::Walk);
 
 }
 
@@ -91,24 +86,6 @@ void APlayerPawn::MoveRight(float Value)
 	}
 }
 
-void APlayerPawn::MouseClick()
-{
-	TArray<AActor*> overlappedActors{nullptr};
-	BoxComponent->GetOverlappingActors(overlappedActors);
-	for (auto OverlappedActor : overlappedActors)
-	{
-		if(OverlappedActor->IsA(ABaseUtfordrinspunkter::StaticClass()))
-		{
-			ABaseUtfordrinspunkter* BaseUtfordrinspunkt = Cast<ABaseUtfordrinspunkter>(OverlappedActor);
-			if (BaseUtfordrinspunkt->b_clicked)
-			{
-				UE_LOG(LogTemp,Warning,TEXT("DENNE ER TRØKKA"))
-				ChallegeWiget(BaseUtfordrinspunkt);
-			}
-		}
-	}
-}
-
 void APlayerPawn::Scroll(float Value)
 {
 	if(Value)
@@ -133,9 +110,4 @@ void  APlayerPawn::Sprint()
 void  APlayerPawn::Walk()
 {
 	MovementComponent->MaxSpeed = WalkSpeed;
-}
-
-void APlayerPawn::ChallegeWiget(ABaseUtfordrinspunkter* baseUtfordrinspunt)
-{
-	
 }
