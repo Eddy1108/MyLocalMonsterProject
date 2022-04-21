@@ -15,7 +15,6 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "FlipBook", meta = (AllowPrivateAccess = "true"))
 	UPaperFlipbookComponent* FlipbookComponent { nullptr };
 
-
 public:	
 	// Sets default values for this actor's properties
 	ABaseUtfordrinspunkter();
