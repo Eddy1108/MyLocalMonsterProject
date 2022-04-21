@@ -9,6 +9,8 @@
 class USpringArmComponent;
 class UCameraComponent;
 class UStaticMeshComponent;
+class UFloatingPawnMovement;
+
 UCLASS()
 class MYLOCALMONSTER_API APlayerPawn : public APawn
 {
@@ -18,12 +20,14 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Mesh", meta = (AllowPrivateAccess = "true"))
 	UStaticMeshComponent* StaticMeshComponent { nullptr };
 	
-	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera", meta = (AllowPrivateAccess = "true"))
 	USpringArmComponent* SpringArm { nullptr };
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera", meta = (AllowPrivateAccess = "true"))
 	UCameraComponent* CameraComp { nullptr };
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "MovementComponent", meta = (AllowPrivateAccess = "true"))
+	UFloatingPawnMovement* MovementComponent { nullptr };
 public:
 	// Sets default values for this pawn's properties
 	APlayerPawn();
@@ -34,6 +38,15 @@ protected:
 
 	void MoveForward(float Value);
 	void MoveRight(float Value);
+	void Scroll(float Value);
+	void Sprint();
+	void Walk();
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Variables", meta = (AllowPrivateAccess = "true"))
+	float SprintSpeed{400};
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Variables", meta = (AllowPrivateAccess = "true"))
+	float WalkSpeed{0};
+	
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
