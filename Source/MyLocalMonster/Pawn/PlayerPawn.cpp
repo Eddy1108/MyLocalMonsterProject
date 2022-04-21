@@ -7,13 +7,15 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
 #include "Components/StaticMeshComponent.h"
+#include "GameFramework/PawnMovementComponent.h"
 #include "MyLocalMonster/Actor/BaseUtfordrinspunkter.h"
+#include "GameFramework/FloatingPawnMovement.h"
 
 // Sets default values
 APlayerPawn::APlayerPawn()
 {
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 
 	StaticMeshComponent=CreateDefaultSubobject<UStaticMeshComponent>("Static mesh");
 	RootComponent = StaticMeshComponent;
@@ -26,6 +28,11 @@ APlayerPawn::APlayerPawn()
 
 	CameraComp = CreateDefaultSubobject<UCameraComponent>("Camera Component");
 	CameraComp->SetupAttachment(SpringArm);
+
+	MovementComponent = CreateDefaultSubobject<UFloatingPawnMovement>("Movement Component");
+	// MovementComponent
+	WalkSpeed = MovementComponent->MaxSpeed;
+	SprintSpeed = WalkSpeed*10;
 }
 
 // Called when the game starts or when spawned
@@ -48,7 +55,12 @@ void APlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 	PlayerInputComponent->BindAxis("MoveForward", this, &APlayerPawn::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &APlayerPawn::MoveRight);
+	PlayerInputComponent->BindAxis("Scroll",this,&APlayerPawn::Scroll);
+
 	PlayerInputComponent->BindAction("MouseClick",IE_Pressed,this,&APlayerPawn::MouseClick);
+	PlayerInputComponent->BindAction("Sprint",IE_Pressed,this,&APlayerPawn::MouseClick);
+	PlayerInputComponent->BindAction("Sprint",IE_Released,this,&APlayerPawn::MouseClick);
+
 }
 
 void APlayerPawn::MoveForward(float Value)
@@ -95,6 +107,32 @@ void APlayerPawn::MouseClick()
 			}
 		}
 	}
+}
+
+void APlayerPawn::Scroll(float Value)
+{
+	if(Value)
+	{
+		
+		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Yellow, FString::Printf(TEXT("Value: GetMovementComponent()->GetName()")));
+
+		//GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Yellow, FString::Printf(TEXT("Value: %f"),Value));
+		float x { SpringArm->TargetArmLength };
+		if(Value > 0)
+			x += (10*Value);
+		else x -= (10* (Value*(-1)));
+		
+		SpringArm->TargetArmLength = x;
+	}
+}
+
+void  APlayerPawn::Sprint()
+{
+	MovementComponent->MaxSpeed = SprintSpeed;
+}
+void  APlayerPawn::Walk()
+{
+	MovementComponent->MaxSpeed = WalkSpeed;
 }
 
 void APlayerPawn::ChallegeWiget(ABaseUtfordrinspunkter* baseUtfordrinspunt)
