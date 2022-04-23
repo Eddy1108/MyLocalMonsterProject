@@ -18,7 +18,7 @@ APlayerPawn::APlayerPawn()
 
 	StaticMeshComponent=CreateDefaultSubobject<UStaticMeshComponent>("Static mesh");
 	RootComponent = StaticMeshComponent;
-	
+
 	SpringArm = CreateDefaultSubobject<USpringArmComponent>("Spring Arm");
 	SpringArm->SetupAttachment(RootComponent);
 
@@ -35,7 +35,8 @@ APlayerPawn::APlayerPawn()
 void APlayerPawn::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	Scroll(15);
 }
 
 // Called every frame
@@ -65,7 +66,7 @@ void APlayerPawn::MoveForward(float Value)
 		// find out which way is forward
 		const FRotator PlayerRotation = Controller->GetControlRotation();
 		const FRotator YawRotation(0, PlayerRotation.Yaw, 0);
-		
+
 		// get forward vector
 		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
 		AddMovementInput(Direction, Value);
@@ -74,13 +75,13 @@ void APlayerPawn::MoveForward(float Value)
 
 void APlayerPawn::MoveRight(float Value)
 {
-	if ( (Controller != nullptr) && (Value != 0.0f)) 
+	if ( (Controller != nullptr) && (Value != 0.0f))
 	{
 		// find out which way is right
 		const FRotator PlayerRotation = Controller->GetControlRotation();
 		const FRotator YawRotation(0, PlayerRotation.Yaw, 0);
-	
-		// get right vector 
+
+		// get right vector
 		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
 		AddMovementInput(Direction, Value);
 	}
@@ -90,15 +91,12 @@ void APlayerPawn::Scroll(float Value)
 {
 	if(Value)
 	{
-		
-		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Yellow, FString::Printf(TEXT("Value: GetMovementComponent()->GetName()")));
-
 		//GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Yellow, FString::Printf(TEXT("Value: %f"),Value));
 		float x { SpringArm->TargetArmLength };
 		if(Value > 0)
 			x += (10*Value);
 		else x -= (10* (Value*(-1)));
-		
+
 		SpringArm->TargetArmLength = x;
 	}
 }
