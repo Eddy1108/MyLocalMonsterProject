@@ -42,6 +42,8 @@ protected:
 	void Sprint();
 	void Walk();
 	
+	void ExitGame();
+	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Variables", meta = (AllowPrivateAccess = "true"))
 	float SprintSpeed{400};
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Variables", meta = (AllowPrivateAccess = "true"))
