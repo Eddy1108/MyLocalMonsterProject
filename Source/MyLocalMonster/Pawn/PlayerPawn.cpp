@@ -9,6 +9,7 @@
 #include "GameFramework/PawnMovementComponent.h"
 #include "MyLocalMonster/Actor/BaseUtfordrinspunkter.h"
 #include "GameFramework/FloatingPawnMovement.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 APlayerPawn::APlayerPawn()
@@ -56,6 +57,7 @@ void APlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 
 	PlayerInputComponent->BindAction("Sprint",IE_Pressed,this,&APlayerPawn::Sprint);
 	PlayerInputComponent->BindAction("Sprint",IE_Released,this,&APlayerPawn::Walk);
+	PlayerInputComponent->BindAction("Exit", IE_Pressed, this, &APlayerPawn::ExitGame);
 
 }
 
@@ -108,4 +110,11 @@ void  APlayerPawn::Sprint()
 void  APlayerPawn::Walk()
 {
 	MovementComponent->MaxSpeed = WalkSpeed;
+}
+
+void APlayerPawn::ExitGame()
+{
+    APlayerController* SpecificPlayer = GetWorld()->GetFirstPlayerController();
+	UKismetSystemLibrary::QuitGame(GetWorld(), SpecificPlayer, EQuitPreference::Quit, true);
+//	GetWorld()->GetFirstPlayerController()->ConsoleCommand("quit");
 }
