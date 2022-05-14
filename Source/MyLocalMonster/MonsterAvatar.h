@@ -82,6 +82,8 @@ public:
 	int XP{0};
 	UPROPERTY(BlueprintReadWrite)
 	int Level{1};
+	UPROPERTY(BlueprintReadWrite)
+	int LastLivesHad{0};
 	
 	std::vector<int> MM;	//6 Items!
 

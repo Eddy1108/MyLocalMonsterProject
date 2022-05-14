@@ -55,8 +55,6 @@ void AMonsterAvatar::BeginPlay()
 		unlockedBody.push_back(i);
 	}
 
-	MM.push_back(0);
-
 	
 	ChangePart();
 
